@@ -1,11 +1,12 @@
 import { Button, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { IUser } from "../../models/IUser.interface";
-import { useMemo } from "react";
+import { useId, useMemo } from "react";
 import { LOCATIONS } from "../../Constants";
 import "./UserCard.css";
 
 function UserCard(props: PropTypes) {
   const { user, onLocationUpdate, onUserDelete } = props;
+  const labelId = useId();
 
   // Formatting the date display format
   // Have used useMemo to only do this computation when date is updated to optimise performance
@@ -29,9 +30,9 @@ function UserCard(props: PropTypes) {
         </p>
         <div className='select-container'>
           <FormControl sx={{ m: 1, minWidth: 120 }} size='small' fullWidth>
-            <InputLabel id='demo-select-small-label'>Location</InputLabel>
+            <InputLabel id={labelId}>Location</InputLabel>
             <Select
-              labelId='demo-select-small-label'
+              labelId={labelId}
               label='Location'
               value={user.location}
               onChange={(event) => onLocationUpdate(user.id, event.target.value)}
