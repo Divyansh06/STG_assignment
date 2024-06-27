@@ -12,6 +12,12 @@ This File contains 3 Main functionalities:
 2. Material UI: For some pre styled components
 3. @redux/toolkit & react-redux: State management
 
+## Live URL
+
+```bash
+  https://stg-assignment.netlify.app/
+```
+
 ## Run Locally
 
 Clone the project
