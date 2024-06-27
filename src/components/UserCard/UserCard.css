@@ -1,0 +1,41 @@
+.avatar {
+    height: 180px;
+    width: 180px;
+    margin: -50px 20px 0px 0px
+}
+
+.card-content {
+    width: 100%;
+    font-size: 15px;
+}
+
+.card-container {
+    display: flex;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: #ccc 0px 5px 30px 0px;
+    width: 420px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.round {
+    border-radius: 10px;
+}
+
+.name-container {
+    text-align: center;
+    margin-left: 0px;
+}
+
+.select-container {
+    width: 95%;
+    margin-left: -10px;
+    margin-bottom: 10px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
