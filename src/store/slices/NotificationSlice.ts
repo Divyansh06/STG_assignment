@@ -10,10 +10,12 @@ const initialState: INotificationState = {
   },
 };
 
+// Slice to manage the notification states
 const notificationSlice = createSlice({
   name: "notification",
   initialState,
   reducers: {
+    // handling the notification values passed from actions
     handleNotification(state, action: PayloadAction<INotification>) {
       state.status = action.payload;
     },

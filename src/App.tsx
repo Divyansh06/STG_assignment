@@ -6,13 +6,17 @@ import { RootState } from "./store/store";
 
 function App() {
   const notification = useSelector((state: RootState) => state.notificationStates.status);
-  console.log({ notification });
 
   return (
     <>
       <div className='app-container'>
+        {/* Notifications: will disappear in 3 Seconds  */}
         {notification.display && <Notification data={notification} />}
+
+        {/* Component displaying the location user mapping toolbar  */}
         <UserCountToolbar />
+
+        {/* Component displaying the user list  */}
         <UserList />
       </div>
     </>

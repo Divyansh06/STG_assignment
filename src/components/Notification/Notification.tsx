@@ -9,9 +9,8 @@ function Notification(props: PropTypes) {
   const { type, content, display } = props.data;
   const dispatch = useDispatch();
 
-  console.log(props.data);
-
   useEffect(() => {
+    // Timeout to hide the notification after 3 seconds
     setTimeout(() => {
       dispatch(
         handleNotification({

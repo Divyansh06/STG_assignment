@@ -1,3 +1,4 @@
+// Interface of User object
 export interface IUser {
   id: string;
   name: string;
@@ -7,6 +8,7 @@ export interface IUser {
   createdAt: string;
 }
 
+// Interface of User states in user slice
 export interface IUserState {
   users: IUser[];
   loading: boolean;

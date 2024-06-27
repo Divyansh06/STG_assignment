@@ -2,27 +2,31 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { useEffect } from "react";
 import { deleteUsers, fetchUsers, updateUsers } from "../../store/actions/UserActions";
-import UserCard from "../UserCard/UserCard";
 import { IUser } from "../../models/IUser.interface";
-import "./UserList.css";
 import { CircularProgress, Grid } from "@mui/material";
+import UserCard from "../UserCard/UserCard";
+import "./UserList.css";
 
 function UserList() {
   const { users, loading } = useSelector((state: RootState) => state.userStates);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    // Initiate the fetching of users
     fetchUsers(dispatch);
   }, []);
 
+  // function to update the user
   function handleLocationUpdate(userId: string, location: string) {
     updateUsers(dispatch, userId, location, users);
   }
 
+  // function to delete the user
   function handleUserDelete(userId: string) {
     deleteUsers(dispatch, userId);
   }
 
+  // Returning the loading status while facing the data
   if (loading) {
     return (
       <div className='loader'>
@@ -31,6 +35,7 @@ function UserList() {
     );
   }
 
+  // Returning the users when data is fetched
   return (
     <div className='user-container'>
       <Grid container spacing={0}>

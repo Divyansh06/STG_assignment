@@ -1,3 +1,4 @@
+// Constant for Locations
 export const LOCATIONS = [
   "ABU DHABI",
   "AMSTERDAM",
@@ -10,4 +11,5 @@ export const LOCATIONS = [
   "AIRES",
 ];
 
+// Contant for base url for all the api calls
 export const BASE_URL = "https://660160fd87c91a11641ab523.mockapi.io/users";

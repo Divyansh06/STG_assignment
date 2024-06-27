@@ -7,6 +7,8 @@ import "./UserCard.css";
 function UserCard(props: PropTypes) {
   const { user, onLocationUpdate, onUserDelete } = props;
 
+  // Formatting the date display format
+  // Have used useMemo to only do this computation when date is updated to optimise performance
   const createdAt = useMemo(() => {
     return new Date(user.createdAt).toUTCString().slice(0, 17);
   }, [user.createdAt]);

@@ -10,17 +10,25 @@ function UserCountToolbar() {
   const [userLocationMap, setUserLocationMap] = useState<Record<string, number>>({});
 
   useEffect(() => {
+    // Trigger user location mapping computations
     if (users.length) createUserLocationMapping();
   }, [users]);
 
   function createUserLocationMapping() {
+    // created a map for location and user
     const locationMap: Record<string, number> = {};
+
+    // loop over locations to create keys for each location
     LOCATIONS.map((item) => {
       locationMap[item] = 0;
     });
+
+    // loop over users to update location count
     users.map((user) => {
       locationMap[user.location] += 1;
     });
+
+    // set the map inn state to be used in UI
     setUserLocationMap(locationMap);
   }
 

@@ -4,10 +4,16 @@ import { handleNotification } from "../slices/NotificationSlice";
 import { handleDeleteUser, handleLoading, handleUpdateUser } from "../slices/UserSlice";
 import { AppDispatch } from "../store";
 
+// Action to fetch the Users and update the state in the userSlice and trigger the revelant notifications.
 export async function fetchUsers(dispatch: AppDispatch) {
   try {
+    // starting the loading
     dispatch(handleLoading(true));
+
+    // Fetched the data
     const data = await fetchUserService();
+
+    // Triggered the notification
     dispatch(
       handleNotification({
         display: true,
@@ -15,9 +21,12 @@ export async function fetchUsers(dispatch: AppDispatch) {
         content: "Users fetched successfully!",
       })
     );
+
+    // Updated the users and stopped the loading
     dispatch(handleUpdateUser(data));
     dispatch(handleLoading(false));
   } catch (error) {
+    // Trigger error notification in case of failure
     dispatch(
       handleNotification({
         display: true,
@@ -28,7 +37,9 @@ export async function fetchUsers(dispatch: AppDispatch) {
   }
 }
 
+// Action to update User's location and update the state in the userSlice and trigger the revelant notifications.
 export async function updateUsers(dispatch: AppDispatch, userId: string, location: string, users: IUser[]) {
+  // Update the array to be updated in the users state
   let updatedUserIndex = -1;
   const updatedUsers = users.map((item, index) => {
     if (item.id === userId) {
@@ -40,9 +51,16 @@ export async function updateUsers(dispatch: AppDispatch, userId: string, locatio
 
   if (updatedUserIndex >= 0) {
     try {
+      // starting the loading
       dispatch(handleLoading(true));
+
+      // Triggring the update user action
       await updateUserService(updatedUsers[updatedUserIndex]);
+
+      // Updating the users in the user slice
       dispatch(handleUpdateUser(updatedUsers));
+
+      // Triggering the success notification
       dispatch(
         handleNotification({
           display: true,
@@ -51,6 +69,7 @@ export async function updateUsers(dispatch: AppDispatch, userId: string, locatio
         })
       );
     } catch (error) {
+      // Trigger error notification in case of failure
       dispatch(
         handleNotification({
           display: true,
@@ -59,15 +78,23 @@ export async function updateUsers(dispatch: AppDispatch, userId: string, locatio
         })
       );
     }
+    // Stopping the loading
     dispatch(handleLoading(false));
   }
 }
 
+// Action to delete the User and update the state in the userSlice and trigger the revelant notifications.
 export async function deleteUsers(dispatch: AppDispatch, userId: string) {
+  // Starting the loading
   dispatch(handleLoading(true));
   try {
+    // Triggring the update user action
     await deleteUserService(userId);
+
+    // Update the user in user slice
     dispatch(handleDeleteUser(userId));
+
+    // Triggering the success notification
     dispatch(
       handleNotification({
         display: true,
@@ -76,6 +103,7 @@ export async function deleteUsers(dispatch: AppDispatch, userId: string) {
       })
     );
   } catch (error) {
+    // Triggering the error notification in case of failure
     dispatch(
       handleNotification({
         display: true,

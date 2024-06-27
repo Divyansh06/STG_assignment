@@ -7,16 +7,20 @@ const initialState: IUserState = {
   users: [],
 };
 
+// Slice to manage all the user states
 const userSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
+    // action to manage user loading state
     handleLoading(state, action: PayloadAction<boolean>) {
       state.loading = action.payload;
     },
+    // action to manage user state
     handleUpdateUser(state, action: PayloadAction<IUser[]>) {
       state.users = action.payload;
     },
+    // action to manage deleting of user
     handleDeleteUser(state, action: PayloadAction<string>) {
       state.users = state.users.filter((item) => item.id !== action.payload);
     },
